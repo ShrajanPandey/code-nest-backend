@@ -9,8 +9,8 @@ import java.time.LocalDateTime;
 
 /**
  * Created by Shrajan
- * -- Wednesday 04-09-2024
- * -- 00:31
+ * Wednesday 04-09-2024
+ * 00:31
  */
 
 @Data

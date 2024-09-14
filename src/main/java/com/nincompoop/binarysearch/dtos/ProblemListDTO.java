@@ -1,32 +1,31 @@
 package com.nincompoop.binarysearch.dtos;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.lang.NonNull;
 import org.springframework.lang.Nullable;
-
-import java.util.List;
 
 /**
  * Created by Shrajan
- * Wednesday 04-09-2024
- * 01:09
+ * Saturday 14-09-2024
+ * 16:09
  */
 
 @Data
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class SearchFilter {
+public class ProblemListDTO {
 
+    @NonNull
+    String problemId;
+    @NonNull
+    String problemName;
+    @NonNull
+    String difficulty;
     @Nullable
-    List<String> difficulty;
+    int submission;
     @Nullable
-    List<String> concepts;
-    @Nullable
-    List<String> companies;
-    boolean sortByAccepted;
-    boolean sortByDifficulty;
+    int accepted;
 
 }
