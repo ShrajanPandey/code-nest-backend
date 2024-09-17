@@ -6,7 +6,7 @@ package com.nincompoop.codenest.constants;
  * 16:27
  */
 
-public class BinarySearchConstants {
+public class CodeNestConstants {
 
     public static final String SUCCESS = "Success";
     public static final String ERROR = "Error";

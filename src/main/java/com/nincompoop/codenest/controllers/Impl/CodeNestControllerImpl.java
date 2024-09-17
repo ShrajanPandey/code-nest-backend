@@ -1,6 +1,6 @@
 package com.nincompoop.codenest.controllers.Impl;
 
-import com.nincompoop.codenest.constants.BinarySearchConstants;
+import com.nincompoop.codenest.constants.CodeNestConstants;
 import com.nincompoop.codenest.controllers.CodeNestController;
 
 import com.nincompoop.codenest.dtos.CodeNestResponse;
@@ -51,15 +51,15 @@ public class CodeNestControllerImpl implements CodeNestController {
 
     private CodeNestResponse successResponse(@NonNull ResponseData data){
         return CodeNestResponse.builder()
-                .statusCode(BinarySearchConstants.SUCCESS_CODE)
-                .message(BinarySearchConstants.SUCCESS)
+                .statusCode(CodeNestConstants.SUCCESS_CODE)
+                .message(CodeNestConstants.SUCCESS)
                 .data(data).build();
     }
 
     private CodeNestResponse failureResponse(){
         return CodeNestResponse.builder()
-                .statusCode(BinarySearchConstants.ERROR_CODE)
-                .message(BinarySearchConstants.ERROR)
+                .statusCode(CodeNestConstants.ERROR_CODE)
+                .message(CodeNestConstants.ERROR)
                 .build();
     }
 }
