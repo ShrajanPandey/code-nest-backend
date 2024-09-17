@@ -1,4 +1,4 @@
-package com.nincompoop.binarysearch.dtos;
+package com.nincompoop.codenest.dtos;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

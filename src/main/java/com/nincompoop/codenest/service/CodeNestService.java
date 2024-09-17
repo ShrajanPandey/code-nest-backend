@@ -1,7 +1,7 @@
-package com.nincompoop.binarysearch.service;
+package com.nincompoop.codenest.service;
 
-import com.nincompoop.binarysearch.dtos.ProblemListDTO;
-import com.nincompoop.binarysearch.dtos.SearchFilter;
+import com.nincompoop.codenest.dtos.ProblemListDTO;
+import com.nincompoop.codenest.dtos.SearchFilter;
 import org.springframework.lang.NonNull;
 import org.springframework.lang.Nullable;
 
@@ -13,7 +13,7 @@ import java.util.List;
  * 16:03
  */
 
-public interface BinarySearchService {
+public interface CodeNestService {
 
     List<ProblemListDTO> getProblemsList(@NonNull int offset, @NonNull int limit, @Nullable SearchFilter searchFilter);
 

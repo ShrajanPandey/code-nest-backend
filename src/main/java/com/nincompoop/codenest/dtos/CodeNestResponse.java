@@ -1,4 +1,4 @@
-package com.nincompoop.binarysearch.dtos;
+package com.nincompoop.codenest.dtos;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -19,7 +19,7 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class BinarySearchResponse {
+public class CodeNestResponse {
 
     @NonNull
     String statusCode;
