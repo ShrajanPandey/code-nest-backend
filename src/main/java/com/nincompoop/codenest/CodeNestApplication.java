@@ -1,13 +1,13 @@
-package com.nincompoop.binarysearch;
+package com.nincompoop.codenest;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class BinarySearchApplication {
+public class CodeNestApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(BinarySearchApplication.class, args);
+		SpringApplication.run(CodeNestApplication.class, args);
 	}
 
 }

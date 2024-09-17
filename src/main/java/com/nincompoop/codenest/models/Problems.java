@@ -1,4 +1,4 @@
-package com.nincompoop.binarysearch.models;
+package com.nincompoop.codenest.models;
 
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;

@@ -1,4 +1,4 @@
-package com.nincompoop.binarysearch.constants;
+package com.nincompoop.codenest.constants;
 
 /**
  * Created by Shrajan
