@@ -1,11 +1,9 @@
-package com.nincompoop.codenest.models;
+package com.nincompoop.codenest.dtos;
 
-import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.time.LocalDateTime;
 
 /**
  * Created by Shrajan
@@ -14,19 +12,22 @@ import java.time.LocalDateTime;
  */
 
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "problem_details")
 public class ProblemDetails {
 
-    int id;
+    String id;
     String problemStatement;
     ExampleTestCase exampleTestCases;
-    LocalDateTime dateCreated;
-    LocalDateTime dateModified;
+    String hiddenTestCasesId;
+    String author;
+    String functionTemplate;
+    int likes;
+
 
     @Data
-    static class ExampleTestCase {
+    public static class ExampleTestCase {
         String input;
         String output;
         String explanation;

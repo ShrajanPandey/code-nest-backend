@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.lang.NonNull;
 import org.springframework.lang.Nullable;
 
@@ -22,7 +23,7 @@ import java.util.List;
 public class CodeNestResponse {
 
     @NonNull
-    String statusCode;
+    HttpStatus statusCode;
     @NonNull
     String message;
     @Nullable
@@ -35,6 +36,8 @@ public class CodeNestResponse {
     public static class ResponseData {
         @Nullable
         List<ProblemListDTO> problemList;
+        @Nullable
+        ProblemDetails problemDetails;
     }
 
 }

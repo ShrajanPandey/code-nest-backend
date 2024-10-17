@@ -1,4 +1,4 @@
-package com.nincompoop.binarysearch;
+package com.nincompoop.codenest;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

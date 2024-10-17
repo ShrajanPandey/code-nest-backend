@@ -1,6 +1,7 @@
 package com.nincompoop.codenest.dtos;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.lang.NonNull;
@@ -13,6 +14,7 @@ import org.springframework.lang.Nullable;
  */
 
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class ProblemListDTO {

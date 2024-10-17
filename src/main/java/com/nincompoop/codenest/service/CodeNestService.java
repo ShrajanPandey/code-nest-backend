@@ -1,5 +1,6 @@
 package com.nincompoop.codenest.service;
 
+import com.nincompoop.codenest.dtos.ProblemDetails;
 import com.nincompoop.codenest.dtos.ProblemListDTO;
 import com.nincompoop.codenest.dtos.SearchFilter;
 import org.springframework.lang.NonNull;
@@ -15,6 +16,8 @@ import java.util.List;
 
 public interface CodeNestService {
 
-    List<ProblemListDTO> getProblemsList(@NonNull int offset, @NonNull int limit, @Nullable SearchFilter searchFilter);
+    List<ProblemListDTO> fetchProblemsList(@NonNull int offset, @NonNull int limit, @Nullable SearchFilter searchFilter);
+
+    ProblemDetails loadProblemDetails(@NonNull String problemId);
 
 }

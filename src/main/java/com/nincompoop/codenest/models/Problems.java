@@ -1,5 +1,7 @@
 package com.nincompoop.codenest.models;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -7,6 +9,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -16,30 +19,53 @@ import java.util.List;
  */
 
 @Data
+@Entity
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "problems")
 public class Problems {
 
     @Id
-    int id;
-    String problemName;
-    String problemStatement;
-    SampleTestCase sampleTestCases;
-    int submissions;
-    int accepted;
-    String tesCasesPath;
-    String author;
-    LocalDate dateModified;
-    LocalDate dateCreated;
-    List<String> concepts;
-    List<String> companies;
+    @Column(name = "id")
+    String id;
 
-    @Data
-    static class SampleTestCase {
-        String input;
-        String output;
-        String explanation;
-    }
+    @Column(name = "problem_name")
+    String problemName;
+
+    @Column(name = "problem_statement_path")
+    String problemStatementPath;
+
+    @Column(name = "sample_testcases_path")
+    String sampleTestCasesPath;
+
+    @Column(name = "submission_count")
+    int submissionCount;
+
+    @Column(name = "accepted_count")
+    int acceptedCount;
+
+    @Column(name = "difficulty")
+    String difficulty;
+
+    @Column(name = "hidden_testcases_path")
+    String hiddenTestCasesPath;
+
+    @Column(name = "author")
+    String author;
+
+    @Column(name = "date_modified")
+    LocalDateTime dateModified;
+
+    @Column(name = "date_created")
+    LocalDate dateCreated;
+
+    @Column(name = "topic_tags")
+    String topicTags;
+
+    @Column(name = "companies")
+    String companies;
+
+    @Column(name = "row_version")
+    int rowVersion;
 
 }
