@@ -21,12 +21,16 @@ public class ProblemListDTO {
 
     @NonNull
     String problemId;
+
     @NonNull
     String problemName;
+
     @NonNull
     String difficulty;
+
     @Nullable
     int submission;
+
     @Nullable
     int accepted;
 

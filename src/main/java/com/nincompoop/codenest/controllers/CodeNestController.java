@@ -1,6 +1,5 @@
 package com.nincompoop.codenest.controllers;
 
-import com.nincompoop.codenest.constants.CodeNestConstants;
 import com.nincompoop.codenest.dtos.CodeNestResponse;
 import com.nincompoop.codenest.dtos.CodeNestResponse.ResponseData;
 import com.nincompoop.codenest.dtos.ProblemDetails;
@@ -12,11 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.lang.NonNull;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -26,7 +21,8 @@ import java.util.List;
  * 00:36
  */
 
-@Controller
+@CrossOrigin(origins = "http://localhost:5173")
+@RestController
 public class CodeNestController {
 
     @Autowired
@@ -53,11 +49,11 @@ public class CodeNestController {
         }
     }
 
-    @GetMapping("/loadProblem")
-    CodeNestResponse loadProblem(){
+    @GetMapping(value = "/fetchProblemDescription")
+    CodeNestResponse fetchProblemDescription(@RequestParam("problemId") String problemId){
 
         try{
-            ProblemDetails problemDetails = codeNestService.loadProblemDetails("");
+            ProblemDetails problemDetails = codeNestService.fetchProblemDetails(problemId);
             ResponseData data = ResponseData.builder()
                     .problemDetails(problemDetails)
                     .build();
@@ -70,7 +66,6 @@ public class CodeNestController {
 
     }
 
-
     private CodeNestResponse successResponse(@NonNull ResponseData data){
         return CodeNestResponse.builder()
                 .statusCode(HttpStatus.OK)
@@ -80,7 +75,7 @@ public class CodeNestController {
 
     private CodeNestResponse failureResponse(@Nullable String message){
         return CodeNestResponse.builder()
-                .statusCode(HttpStatus.BAD_REQUEST)
+                .statusCode(HttpStatus.INTERNAL_SERVER_ERROR)
                 .message(message)
                 .build();
     }

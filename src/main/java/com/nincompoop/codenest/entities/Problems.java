@@ -1,4 +1,4 @@
-package com.nincompoop.codenest.models;
+package com.nincompoop.codenest.entities;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -59,8 +59,8 @@ public class Problems {
     @Column(name = "date_created")
     LocalDate dateCreated;
 
-    @Column(name = "topic_tags")
-    String topicTags;
+    @Column(name = "concept_tags")
+    String conceptTags;
 
     @Column(name = "companies")
     String companies;

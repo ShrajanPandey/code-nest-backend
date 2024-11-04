@@ -1,9 +1,9 @@
 package com.nincompoop.codenest.dtos;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.springframework.lang.Nullable;
+
+import java.util.List;
 
 /**
  * Created by Shrajan
@@ -17,14 +17,47 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class ProblemDetails {
 
-    String id;
+    @NonNull
+    String problemId;
+
+    @NonNull
+    String problemTitle;
+
+    @NonNull
     String problemStatement;
-    ExampleTestCase exampleTestCases;
+
+    @NonNull
+    List<ExampleTestCase> exampleTestCases;
+
+    @Nullable
+    List<String> hints;
+
+    @NonNull
     String hiddenTestCasesId;
+
+    @Nullable
     String author;
+
+    @Nullable
     String functionTemplate;
+
+    @Nullable
+    List<String> constraints;
+
+    @Nullable
+    List<String> conceptTags;
+
+    @Nullable
+    List<String> companies;
+
+    @Nullable
+    String difficulty;
+
+    @NonNull
     int likes;
 
+    @NonNull
+    int dislikes;
 
     @Data
     public static class ExampleTestCase {

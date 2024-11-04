@@ -18,6 +18,6 @@ public interface CodeNestService {
 
     List<ProblemListDTO> fetchProblemsList(@NonNull int offset, @NonNull int limit, @Nullable SearchFilter searchFilter);
 
-    ProblemDetails loadProblemDetails(@NonNull String problemId);
+    ProblemDetails fetchProblemDetails(@NonNull String problemId);
 
 }
