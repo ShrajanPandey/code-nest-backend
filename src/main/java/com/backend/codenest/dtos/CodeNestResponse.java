@@ -1,4 +1,4 @@
-package com.nincompoop.codenest.dtos;
+package com.backend.codenest.dtos;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;

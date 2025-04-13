@@ -1,14 +1,14 @@
-package com.nincompoop.codenest.service.impl;
+package com.backend.codenest.service.impl;
 
-import com.nincompoop.codenest.constants.CodeNestConstants;
-import com.nincompoop.codenest.dtos.CodeNestRequestDTOs;
-import com.nincompoop.codenest.dtos.ProblemDetails;
-import com.nincompoop.codenest.dtos.ProblemListDTO;
-import com.nincompoop.codenest.dtos.ResponseDTOs;
-import com.nincompoop.codenest.entities.Problem;
-import com.nincompoop.codenest.repository.slave.ProblemSlaveRepository;
-import com.nincompoop.codenest.service.CodeNestService;
-import com.nincompoop.codenest.service.ProblemsManager;
+import com.backend.codenest.constants.CodeNestConstants;
+import com.backend.codenest.dtos.CodeNestRequestDTOs;
+import com.backend.codenest.dtos.ProblemDetails;
+import com.backend.codenest.dtos.ProblemListDTO;
+import com.backend.codenest.dtos.ResponseDTOs;
+import com.backend.codenest.entities.Problem;
+import com.backend.codenest.repository.slave.ProblemSlaveRepository;
+import com.backend.codenest.service.CodeNestService;
+import com.backend.codenest.service.ProblemsManager;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.NonNull;

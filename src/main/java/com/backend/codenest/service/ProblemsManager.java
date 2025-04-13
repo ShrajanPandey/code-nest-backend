@@ -1,7 +1,7 @@
-package com.nincompoop.codenest.service;
+package com.backend.codenest.service;
 
-import com.nincompoop.codenest.dtos.ProblemListDTO;
-import com.nincompoop.codenest.repository.slave.ProblemSlaveRepository;
+import com.backend.codenest.dtos.ProblemListDTO;
+import com.backend.codenest.repository.slave.ProblemSlaveRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

@@ -1,4 +1,4 @@
-package com.nincompoop.codenest.entities;
+package com.backend.codenest.entities;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

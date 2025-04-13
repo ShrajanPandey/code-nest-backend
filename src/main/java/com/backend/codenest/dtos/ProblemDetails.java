@@ -1,4 +1,4 @@
-package com.nincompoop.codenest.dtos;
+package com.backend.codenest.dtos;
 
 import lombok.*;
 import org.springframework.lang.Nullable;

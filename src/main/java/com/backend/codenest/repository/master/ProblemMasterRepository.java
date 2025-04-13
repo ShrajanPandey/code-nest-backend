@@ -1,6 +1,6 @@
-package com.nincompoop.codenest.repository.master;
+package com.backend.codenest.repository.master;
 
-import com.nincompoop.codenest.entities.Problem;
+import com.backend.codenest.entities.Problem;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

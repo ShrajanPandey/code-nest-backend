@@ -1,6 +1,6 @@
-package com.nincompoop.codenest.repository.slave;
+package com.backend.codenest.repository.slave;
 
-import com.nincompoop.codenest.entities.Problem;
+import com.backend.codenest.entities.Problem;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

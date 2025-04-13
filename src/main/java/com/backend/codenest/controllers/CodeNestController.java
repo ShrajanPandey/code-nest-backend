@@ -1,8 +1,8 @@
-package com.nincompoop.codenest.controllers;
+package com.backend.codenest.controllers;
 
-import com.nincompoop.codenest.dtos.*;
-import com.nincompoop.codenest.dtos.CodeNestResponse.ResponseData;
-import com.nincompoop.codenest.service.CodeNestService;
+import com.backend.codenest.dtos.*;
+import com.backend.codenest.dtos.CodeNestResponse.ResponseData;
+import com.backend.codenest.service.CodeNestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;

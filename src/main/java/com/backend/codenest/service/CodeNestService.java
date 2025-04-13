@@ -1,11 +1,10 @@
-package com.nincompoop.codenest.service;
+package com.backend.codenest.service;
 
-import com.nincompoop.codenest.dtos.CodeNestRequestDTOs;
-import com.nincompoop.codenest.dtos.ProblemDetails;
-import com.nincompoop.codenest.dtos.ProblemListDTO;
-import com.nincompoop.codenest.dtos.ResponseDTOs;
+import com.backend.codenest.dtos.CodeNestRequestDTOs;
+import com.backend.codenest.dtos.ProblemDetails;
+import com.backend.codenest.dtos.ProblemListDTO;
+import com.backend.codenest.dtos.ResponseDTOs;
 import org.springframework.lang.NonNull;
-import org.springframework.lang.Nullable;
 
 import java.util.List;
 

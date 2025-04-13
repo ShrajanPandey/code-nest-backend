@@ -1,4 +1,4 @@
-package com.nincompoop.codenest.constants;
+package com.backend.codenest.constants;
 
 /**
  * Created by Shrajan

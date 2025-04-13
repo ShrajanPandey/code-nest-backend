@@ -1,6 +1,6 @@
-package com.nincompoop.codenest.dtos;
+package com.backend.codenest.dtos;
 
-import com.nincompoop.codenest.constants.CodeNestConstants;
+import com.backend.codenest.constants.CodeNestConstants;
 import lombok.Data;
 import org.springframework.lang.Nullable;
 

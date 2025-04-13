@@ -1,4 +1,4 @@
-package com.nincompoop.codenest.dtos;
+package com.backend.codenest.dtos;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
