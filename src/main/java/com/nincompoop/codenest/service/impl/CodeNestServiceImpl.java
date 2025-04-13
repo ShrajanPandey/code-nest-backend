@@ -1,10 +1,12 @@
 package com.nincompoop.codenest.service.impl;
 
+import com.nincompoop.codenest.constants.CodeNestConstants;
+import com.nincompoop.codenest.dtos.CodeNestRequestDTOs;
 import com.nincompoop.codenest.dtos.ProblemDetails;
 import com.nincompoop.codenest.dtos.ProblemListDTO;
-import com.nincompoop.codenest.dtos.SearchFilter;
-import com.nincompoop.codenest.entities.Problems;
-import com.nincompoop.codenest.repository.slave.ProblemsSlaveRepository;
+import com.nincompoop.codenest.dtos.ResponseDTOs;
+import com.nincompoop.codenest.entities.Problem;
+import com.nincompoop.codenest.repository.slave.ProblemSlaveRepository;
 import com.nincompoop.codenest.service.CodeNestService;
 import com.nincompoop.codenest.service.ProblemsManager;
 import lombok.extern.slf4j.Slf4j;
@@ -14,6 +16,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 
@@ -28,15 +31,26 @@ import java.util.Objects;
 public class CodeNestServiceImpl implements CodeNestService {
 
     @Autowired
-    ProblemsSlaveRepository problemsSlaveRepository;
+    ProblemSlaveRepository problemSlaveRepository;
 
     @Autowired
     ProblemsManager problemsManager;
 
     @Override
-    public List<ProblemListDTO> fetchProblemsList(@NonNull int offset, @NonNull int limit, @Nullable SearchFilter searchFilter) {
+    public List<ProblemListDTO> fetchProblemsList(@NonNull CodeNestRequestDTOs.FetchProblemsRequestDTO fetchProblemsRequestDTO) {
 
-        return List.of();
+        List<Problem> problemList = problemSlaveRepository.getProblemsList(0, fetchProblemsRequestDTO.getLimit());
+        applySearchFilter(problemList, fetchProblemsRequestDTO.getSearchFilter());
+
+        return problemList.stream()
+                .map(problem -> ProblemListDTO.builder()
+                        .problemName(problem.getProblemName())
+                        .problemId(problem.getId())
+                        .difficulty(problem.getDifficulty())
+                        .accepted(problem.getAcceptedCount())
+                        .submission(problem.getSubmissionCount())
+                        .build())
+                .toList();
 
     }
 
@@ -45,10 +59,10 @@ public class CodeNestServiceImpl implements CodeNestService {
 
         log.info("Fetching problem details for problemId {}", problemId);
 
-        Problems problem = problemsSlaveRepository.findById(problemId).orElse(null);
+        Problem problem = problemSlaveRepository.findById(problemId).orElse(null);
 
         if(Objects.isNull(problem)) {
-            String errorMessage = "Problem with id " + problemId + " not found";
+            String errorMessage = "Invalid problem " + problemId;
             log.error(errorMessage);
             throw new RuntimeException(errorMessage);
         }
@@ -57,16 +71,31 @@ public class CodeNestServiceImpl implements CodeNestService {
 
     }
 
-    public ProblemDetails generateProblemDetailsDTO(@NonNull Problems problem) {
+    @Override
+    public ResponseDTOs.JudgeSolutionResponse judgeSolution(@NonNull CodeNestRequestDTOs.JudgeSolutionRequestDTO judgeSolutionRequestDTO) {
+        log.info(" Request to judge solution received ---> {}", judgeSolutionRequestDTO);
+        // Logic for running the code yet to be figured out
+        // current idea
+        // add the typed code in a new file
+        // write a base template code which uses the file class to run it
+        // thus always having a constant form
+        return ResponseDTOs.JudgeSolutionResponse.builder()
+                .runStatus(CodeNestConstants.RUN_STATUS.CORRECT)
+                .totalTestCasesCount(10)
+                .passedTestCasesCount(10)
+                .build();
+    }
+
+    private ProblemDetails generateProblemDetailsDTO(@NonNull Problem problem) {
 
         String problemName = problem.getProblemName();
-        String problemStatementPath = problem.getProblemStatementPath();
-        String sampleTestCasesPath = problem.getSampleTestCasesPath();
+        String problemStatementPath = problem.getProblemStatement();
+        String sampleTestCasesPath = problem.getSampleTestCases();
         List<String> conceptTags = Arrays.asList(problem.getConceptTags().split(","));
 
         ProblemDetails problemDetails = new ProblemDetails();
 
-        //parsing problem Description etc. form template and populating the DTO
+        //parsing problem Description etc. from template and populating the DTO
         parseProblemDescriptionFromTemplate(problemDetails, problemStatementPath, sampleTestCasesPath);
 
         problemDetails.setProblemTitle(problemName);
@@ -74,7 +103,7 @@ public class CodeNestServiceImpl implements CodeNestService {
         problemDetails.setAuthor(problem.getAuthor());
         problemDetails.setDifficulty(problem.getDifficulty());
         problemDetails.setConceptTags(conceptTags);
-        problemDetails.setFunctionTemplate(
+        problemDetails.setFunctionTemplate( // TODO-SHRAJAN think about logic to fetch template of question
                 "function add(a, b) {\n" +
                 "    return a + b;\n" +
                 "}"
@@ -84,21 +113,21 @@ public class CodeNestServiceImpl implements CodeNestService {
 
     }
 
-    void parseProblemDescriptionFromTemplate(ProblemDetails problemDetails, String problemStatementPath, String sampleTestCasesPath) {
+    private void parseProblemDescriptionFromTemplate(ProblemDetails problemDetails, String problemStatementPath, String sampleTestCasesPath) {
 
         //to be fetched after parsing file from example test cases
-        ProblemDetails.ExampleTestCase exampleTestCases1 = new ProblemDetails.ExampleTestCase();
-        exampleTestCases1.setInput("nums = [2,7,11,15], target = 9");
-        exampleTestCases1.setOutput("[0,1]");
-        exampleTestCases1.setExplanation("Because nums[0] + nums[1] == 9, we return [0, 1].");
+        ProblemDetails.TestCase testCase1 = new ProblemDetails.TestCase();
+        testCase1.setInput("nums = [2,7,11,15], target = 9");
+        testCase1.setOutput("[0,1]");
+        testCase1.setExplanation("Because nums[0] + nums[1] == 9, we return [0, 1].");
 
-        ProblemDetails.ExampleTestCase exampleTestCases2 = new ProblemDetails.ExampleTestCase();
-        exampleTestCases2.setInput("[3,2,4], target = 6");
-        exampleTestCases2.setOutput("[1,2]");
+        ProblemDetails.TestCase testCase2 = new ProblemDetails.TestCase();
+        testCase2.setInput("[3,2,4], target = 6");
+        testCase2.setOutput("[1,2]");
 
-        ProblemDetails.ExampleTestCase exampleTestCases3 = new ProblemDetails.ExampleTestCase();
-        exampleTestCases3.setInput("[3,3], target = 6");
-        exampleTestCases3.setOutput("[0,1]");
+        ProblemDetails.TestCase testCase3 = new ProblemDetails.TestCase();
+        testCase3.setInput("[3,3], target = 6");
+        testCase3.setOutput("[0,1]");
 
 
         problemDetails.setProblemStatement("Given an array of integers nums and an integer target, return indices of the " +
@@ -109,9 +138,28 @@ public class CodeNestServiceImpl implements CodeNestService {
 
         problemDetails.setConstraints(List.of("1 <= n <= 1e9", "Only one valid answer exists."));
 
-        problemDetails.setExampleTestCases(List.of(exampleTestCases1, exampleTestCases2, exampleTestCases3));
+        problemDetails.setTestCases(List.of(testCase1, testCase2, testCase3));
 
         problemDetails.setHints(List.of("Shrajan good boy", "Boy boy good good"));
+
+    }
+
+    private void applySearchFilter(@Nullable List<Problem> problemList, @Nullable CodeNestRequestDTOs.SearchFilter searchFilter) {
+
+        //if problemsList is null or searchFilter is null there's nothing to filter
+        if(Objects.isNull(problemList) || Objects.isNull(searchFilter)) {
+            return;
+        }
+
+        problemList.stream().filter((problem -> problem.getCompanies().contains(searchFilter.getCompanies().get(0)))).toList();
+
+        if(searchFilter.isSortByAccepted()) {
+            problemList.sort(Comparator.comparing(Problem::getSubmissionCount));
+        }
+
+        if(searchFilter.isSortByDifficulty()) {
+            problemList.sort(Comparator.comparing(Problem::getDifficulty));
+        }
 
     }
 

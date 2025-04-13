@@ -1,6 +1,6 @@
 package com.nincompoop.codenest.repository.slave;
 
-import com.nincompoop.codenest.entities.Problems;
+import com.nincompoop.codenest.entities.Problem;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -14,9 +14,9 @@ import java.util.List;
  */
 
 @Repository
-public interface ProblemsSlaveRepository extends JpaRepository<Problems, String> {
+public interface ProblemSlaveRepository extends JpaRepository<Problem, String> {
 
-    @Query(value = "select * FROM Problems LIMIT :limit OFFSET :offset", nativeQuery = true)
-    List<Problems> getProblemsList(@Param("offset") int offset,@Param("limit") int limit);
+    @Query(value = "select * FROM Problem LIMIT :limit OFFSET :offset", nativeQuery = true)
+    List<Problem> getProblemsList(@Param("offset") int offset, @Param("limit") int limit);
 
 }

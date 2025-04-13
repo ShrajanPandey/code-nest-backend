@@ -1,8 +1,7 @@
 package com.nincompoop.codenest.service;
 
-import com.nincompoop.codenest.dtos.ProblemDetails;
 import com.nincompoop.codenest.dtos.ProblemListDTO;
-import com.nincompoop.codenest.repository.slave.ProblemsSlaveRepository;
+import com.nincompoop.codenest.repository.slave.ProblemSlaveRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -17,7 +16,7 @@ import java.util.List;
 public class ProblemsManager {
 
     @Autowired
-    ProblemsSlaveRepository problemsSlaveRepository;
+    ProblemSlaveRepository problemSlaveRepository;
 
     List<ProblemListDTO> getProblemList(){
 

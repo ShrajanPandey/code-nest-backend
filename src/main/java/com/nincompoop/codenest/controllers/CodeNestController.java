@@ -1,16 +1,13 @@
 package com.nincompoop.codenest.controllers;
 
-import com.nincompoop.codenest.dtos.CodeNestResponse;
+import com.nincompoop.codenest.dtos.*;
 import com.nincompoop.codenest.dtos.CodeNestResponse.ResponseData;
-import com.nincompoop.codenest.dtos.ProblemDetails;
-import com.nincompoop.codenest.dtos.ProblemListDTO;
-import com.nincompoop.codenest.dtos.SearchFilter;
 import com.nincompoop.codenest.service.CodeNestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.lang.NonNull;
 import org.springframework.lang.Nullable;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,7 +18,7 @@ import java.util.List;
  * 00:36
  */
 
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(origins = "*")
 @RestController
 public class CodeNestController {
 
@@ -33,11 +30,10 @@ public class CodeNestController {
         return null;
     }
 
-    @GetMapping("/fetchProblemsList")
-    CodeNestResponse fetchProblemsList(@RequestBody int offset, @RequestBody int limit,
-                                     @RequestParam("searchFilter")SearchFilter searchFilter){
+    @GetMapping(value = "/fetchProblemsList", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    CodeNestResponse fetchProblemsList(@RequestBody CodeNestRequestDTOs.FetchProblemsRequestDTO fetchProblemsRequestDTO){
         try{
-            List<ProblemListDTO> problemList = codeNestService.fetchProblemsList(offset, limit, searchFilter);
+            List<ProblemListDTO> problemList = codeNestService.fetchProblemsList(fetchProblemsRequestDTO);
             ResponseData data = ResponseData.builder()
                     .problemList(problemList)
                     .build();
@@ -49,7 +45,7 @@ public class CodeNestController {
         }
     }
 
-    @GetMapping(value = "/fetchProblemDescription")
+    @GetMapping(value = "/fetchProblemDescription", produces = MediaType.APPLICATION_JSON_VALUE)
     CodeNestResponse fetchProblemDescription(@RequestParam("problemId") String problemId){
 
         try{
@@ -61,6 +57,23 @@ public class CodeNestController {
             return successResponse(data);
         }
         catch(Exception e){
+            return failureResponse(e.getMessage());
+        }
+
+    }
+
+    @PostMapping(value = "/judgeSolution", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    CodeNestResponse judgeSolution(@RequestBody CodeNestRequestDTOs.JudgeSolutionRequestDTO judgeSolutionRequestDTO) {
+
+        try {
+            ResponseDTOs.JudgeSolutionResponse judgeSolutionResponse = codeNestService.judgeSolution(judgeSolutionRequestDTO);
+            ResponseData data = ResponseData.builder()
+                    .judgeSolutionResponse(judgeSolutionResponse)
+                    .build();
+
+            return successResponse(data);
+        }
+        catch (Exception e) {
             return failureResponse(e.getMessage());
         }
 

@@ -13,4 +13,17 @@ public class CodeNestConstants {
     public static final String SUCCESS_CODE = "200";
     public static final String ERROR_CODE = "500";
 
+    public enum ACTION {
+        SUBMIT, RUN
+    }
+
+    public enum RUN_STATUS {
+        CORRECT, INCORRECT_ANSWER
+    };
+
+    public enum SUBMIT_STATUS {
+        ACCEPTED, PARTIALLY_ACCEPTED, FAILED
+    }
+
+
 }

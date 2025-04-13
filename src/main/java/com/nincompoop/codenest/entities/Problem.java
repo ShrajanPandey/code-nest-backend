@@ -10,7 +10,6 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.List;
 
 /**
  * Created by Shrajan
@@ -22,8 +21,8 @@ import java.util.List;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "problems")
-public class Problems {
+@Table(name = "problem")
+public class Problem {
 
     @Id
     @Column(name = "id")
@@ -32,11 +31,11 @@ public class Problems {
     @Column(name = "problem_name")
     String problemName;
 
-    @Column(name = "problem_statement_path")
-    String problemStatementPath;
+    @Column(name = "problem_statement")
+    String problemStatement;
 
-    @Column(name = "sample_testcases_path")
-    String sampleTestCasesPath;
+    @Column(name = "sample_testcases")
+    String sampleTestCases;
 
     @Column(name = "submission_count")
     int submissionCount;
@@ -53,12 +52,6 @@ public class Problems {
     @Column(name = "author")
     String author;
 
-    @Column(name = "date_modified")
-    LocalDateTime dateModified;
-
-    @Column(name = "date_created")
-    LocalDate dateCreated;
-
     @Column(name = "concept_tags")
     String conceptTags;
 
@@ -67,5 +60,12 @@ public class Problems {
 
     @Column(name = "row_version")
     int rowVersion;
+
+    @Column(name = "date_modified")
+    LocalDateTime dateModified;
+
+    @Column(name = "date_created")
+    LocalDate dateCreated;
+
 
 }

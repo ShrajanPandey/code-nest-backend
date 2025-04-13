@@ -1,6 +1,6 @@
 package com.nincompoop.codenest.repository.master;
 
-import com.nincompoop.codenest.entities.Problems;
+import com.nincompoop.codenest.entities.Problem;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -10,6 +10,6 @@ import org.springframework.stereotype.Repository;
  */
 
 @Repository
-public interface ProblemsMasterRepository extends JpaRepository<Problems, String> {
+public interface ProblemMasterRepository extends JpaRepository<Problem, String> {
 
 }

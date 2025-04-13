@@ -1,5 +1,7 @@
 package com.nincompoop.codenest.dtos;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -33,11 +35,19 @@ public class CodeNestResponse {
     @Builder
     @NoArgsConstructor
     @AllArgsConstructor
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     public static class ResponseData {
         @Nullable
+        @JsonProperty("problems_list")
         List<ProblemListDTO> problemList;
+
         @Nullable
+        @JsonProperty("problem_description")
         ProblemDetails problemDetails;
+
+        @Nullable
+        @JsonProperty("judge_response")
+        ResponseDTOs.JudgeSolutionResponse judgeSolutionResponse;
     }
 
 }

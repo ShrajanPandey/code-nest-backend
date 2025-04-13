@@ -27,7 +27,7 @@ public class ProblemDetails {
     String problemStatement;
 
     @NonNull
-    List<ExampleTestCase> exampleTestCases;
+    List<TestCase> testCases;
 
     @Nullable
     List<String> hints;
@@ -53,14 +53,14 @@ public class ProblemDetails {
     @Nullable
     String difficulty;
 
-    @NonNull
+    @Nullable // for now null
     int likes;
 
-    @NonNull
+    @Nullable // for now until added in UI
     int dislikes;
 
     @Data
-    public static class ExampleTestCase {
+    public static class TestCase {
         String input;
         String output;
         String explanation;
